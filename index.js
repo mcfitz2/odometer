@@ -8,6 +8,16 @@ const winston = require("winston");
 const expressWinston = require("express-winston");
 mongoose.Promise = global.Promise;
 const MongoStore = require('connect-mongo')(session);
+
+
+
+console.log(process.argv);
+if (process.argv.length > 1 && process.argv[2] == "testing") {
+	mongoose.connect(process.env.MONGODB_URI);
+	require("./lib/jobs/notifications.js")();
+} else {
+
+
 var app = express();
 app.use(expressWinston.logger({
     transports: [
@@ -47,3 +57,4 @@ app.db.once("open", function() {
     app.listen(process.env.PORT || 8888);
 });
 mongoose.connect(process.env.MONGODB_URI);
+}
