@@ -1,0 +1,18 @@
+<p>Your {{vehicle.year}} {{vehicle.make}} {{vehicle.model}} has reached {{mileage}} miles and is in need of maintenance. Please address the following service items and click the Resolved button when you're done.</p>
+<table>
+    <tr>
+        <th>Service Item</th>
+        <th>Schedule</th>
+        <th>Last Serviced</th>
+        <th></th>
+    </tr>
+    {{#reminders}}
+    <tr>
+        <td>{{description}}</td>
+        <td>Every {{interval}} miles</td>
+        <td>{{lastCheck}} miles</td>
+        <td>
+            <a href="{{baseUrl}}/resolve/{{id}}">Resolved</a></td>
+    </tr>
+    {{/reminders}}
+</table>
